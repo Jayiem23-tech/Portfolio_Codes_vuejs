@@ -33,11 +33,11 @@
                    <h3>Web</h3>
                 </div>
                 <div class="skillset styling">
-                  <div class="title"> Vuejs , Reactjs</div>
+                  <div class="title">Html5, Css3, js(es6), Vuejs</div>
                   <div class="content">
                     <p>Code Editor: Visual Studio Code</p> 
                     <p>Tools/Libraries: npm,particles.js</p>
-                    <p>Others: Static Site Deployment to GitHub Pages</p> 
+                    <p>Others: Static Site Deployment to GitHub Pages / heroku</p> 
                   </div> 
                 </div> 
             </div> 

@@ -2,10 +2,10 @@
     <div class="project" id="project">
         <div class="container" v-for="project in projects" v-bind:key = "project.project_id">  
                 <div class="project_header" >
-                    <h2>{{project.project_id}} of 2 projects</h2>
+                    <h2>{{project.project_id}} of 3 projects</h2>
                     <div class="pager">
                         <button  v-on:click="prev" style="font-size:15px;padding:10px;">Preview</button>
-                         <button  v-on:click="next" style="font-size:15px;padding:10px 20px;">Next</button> 
+                        <button  v-on:click="next" style="font-size:15px;padding:10px 20px;">Next</button> 
                     </div> 
                 </div>   
                 <div class="container_company">
@@ -30,6 +30,9 @@
                 <div class="involvement">
                     <h3>Involvement: {{project.involvement}}</h3> 
                     <h3>Date: {{project.date}}</h3> 
+                    <div class="links" v-if="showDemoLink">
+                        <a :href="project.demolink" target="_blank" rel="noopener noreferrer">Demo</a> 
+                    </div>
                 </div>  
         </div>   
     </div>
@@ -52,6 +55,7 @@ export default {
             }],
             index:1,
             isShow:false,
+            showDemoLink:false,
       } 
   },
     methods:{ 
@@ -99,22 +103,59 @@ export default {
                         techName:' Mysql'   
                     }]
                 }];  
+            } else if (this.index === 3){
+                this.projects = [{
+                    project_id : 3,
+                    title : "Simple Point of Sale System",
+                    role : "fullStack",
+                    develop_in : "Developed as Portfolio",
+                    system_desc : "Responsibility : This is created as my Portfolio to showcase my Skillset. It is created using Vue.js and Laravel Api",
+                    involvement : "Start to Finished",
+                    date : "Aug 03-16 2020",
+                    image_path : require("../assets/posystem.jpg"),
+                    demolink:'https://simple-point-of-sale-system.herokuapp.com/',
+                    gitlink:'https://github.com/Jayiem23-tech',
+                    techlogo:[{
+                        image_path:require("../assets/global.png"),
+                        techName:'Web'   
+                    }, {
+                        image_path:require("../assets/vuejs.png"),
+                        techName:'Vuejs'   
+                    }, {
+                        image_path:require("../assets/database.png"),
+                        techName:'PostgreSQL'   
+                    },{
+                        image_path:require("../assets/laravel.png"),
+                        techName:'Laravel api'   
+                    }]
+                }];  
             }  
+
         },
         next:function(){
             
-            if (this.index <= 1) { 
+            if (this.index >= 1) { 
                 this.index++;
+                // console.log(this.index++);
                 this.pages();
             }
-            
+            this.hasDemoLink();
         },
         prev:function(){
             if (this.index >= 1) {
                 this.index--;
                 this.pages(); 
             }
-        } 
+            this.hasDemoLink();
+            
+        },
+        hasDemoLink(){
+            if (this.index == 3) {
+                this.showDemoLink = true;
+            }else{
+                this.showDemoLink = false;
+            }
+        }
     }, 
     created(){
          this.pages();
@@ -211,9 +252,26 @@ export default {
     }
     .techstack p{
         font-size: .8em;
+        margin-left:5px; 
     }
     .involvement{
          font-size: .8em;
+         line-height: 1.5;
+    }
+    .involvement .links{
+        display:flex; 
+    }
+    .involvement .links a{ 
+        margin:0px 20px; 
+        padding:5px 10px;
+        border:3px solid #4CAF50;
+        border-radius: 10px;
+        color:#f0f0f0; 
+        cursor:pointer;
+        background-color:#4CAF50;
+    }
+    .involvement .links a:hover{
+        opacity:.5;
     }
 }
 /* FOR MOBILE AND TABLET */
